@@ -3,6 +3,7 @@ import CourseCard from '../CourseCard/CourseCard';
 import './Home.css';
 
 const Home = () => {
+
   const [courses, setCourses] = useState([]); // State to hold the parsed courses
 
   const handleFileUpload = async (event) => {
@@ -27,6 +28,14 @@ const Home = () => {
 
         // Update the courses state with the parsed courses
         setCourses(parsedCourses);
+        // Example: Parsing with pdf-lib (you can choose another library)
+        // const pdfDoc = await PDFDocument.load(arrayBuffer);
+        // const textContent = await pdfDoc.getTextContent();
+        // console.log('Parsed PDF content:', textContent);
+
+        // Alternatively, send the PDF to the server for further processing
+        // sendPdfToServer(file);
+
         console.log('PDF successfully processed');
       };
       fileReader.readAsArrayBuffer(file);
