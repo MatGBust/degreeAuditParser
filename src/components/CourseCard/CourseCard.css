@@ -14,6 +14,7 @@
 
 .course-card:hover {
   transform: scale(1.05);
+  color: white;
 }
 
 .progress-container {
