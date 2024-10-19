@@ -9,7 +9,7 @@
   color: black;
   background-color: #898181;
   transition: transform 0.3s;
-  width: 50pc;
+  width: 800px;
 }
 
 .course-card:hover {
