@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import CourseCard from '../CourseCard/CourseCard';
+import CategoryCard from '../CategoryCard/CategoryCard';
 import './Home.css';
 
 const Home = () => {
 
-  const [courses, setCourses] = useState([]); // State to hold the parsed courses
+  const [categories, setCategories] = useState([]); 
 
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -18,7 +18,7 @@ const Home = () => {
 
         // Here you would parse the PDF (using a library like pdf-lib, for example)
         // For now, let's simulate parsing with dummy data:
-        const parsedCourses = [
+        const parsedCategories = [
           { id: 1, title: 'BASIC MATH & SCIENCE', credits: 3, completed: true },
           { id: 2, title: 'GENERAL COLLEGE OF ENGINEERING REQUIREMENTS', credits: 3, completed: true },
           { id: 3, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1', credits: 3, completed: true },
@@ -27,7 +27,7 @@ const Home = () => {
         ];
 
         // Update the courses state with the parsed courses
-        setCourses(parsedCourses);
+        setCategories(parsedCategories);
         // Example: Parsing with pdf-lib (you can choose another library)
         // const pdfDoc = await PDFDocument.load(arrayBuffer);
         // const textContent = await pdfDoc.getTextContent();
@@ -45,7 +45,7 @@ const Home = () => {
   };
 
   return (
-    <div className="course-cards-container">
+    <div className="category-cards-container">
       <h1>Hi Buckeye! Upload your degree audit here!</h1>
       <div className="upload-container">
         <label className="upload-button">
@@ -53,12 +53,12 @@ const Home = () => {
           <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept="application/pdf" />
         </label>
       </div>
-      {courses.length > 0 ? (
-        courses.map(course => (
-          <CourseCard key={course.id} course={course} />
+      {categories.length > 0 ? (
+        categories.map(category => (
+          <CategoryCard key={category.id} category={category} />
         ))
       ) : (
-        <p>No courses uploaded yet.</p>
+        <p>No audit uploaded yet.</p>
       )}
     </div>
   );

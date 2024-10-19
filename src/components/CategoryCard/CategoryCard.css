@@ -1,6 +1,5 @@
-/* src/components/CourseCard/CourseCard.css */
 
-.course-card {
+.category-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
@@ -12,7 +11,7 @@
   width: 800px;
 }
 
-.course-card:hover {
+.category-card:hover {
   transform: scale(1.05);
   color: white;
 }

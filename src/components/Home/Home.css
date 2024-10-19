@@ -1,6 +1,6 @@
 /* src/components/Home/Home.css */
 
-.course-cards-container {
+.category-cards-container {
   display: flex;                /* Use flexbox layout */
   flex-direction: column;       /* Stack cards vertically */
   align-items: center;          /* Center cards horizontally */
@@ -12,6 +12,6 @@
 }
 
 
-.course-card:hover {
+.category-card:hover {
   transform: scale(1.02);       /* Slightly scale up on hover */
 }
