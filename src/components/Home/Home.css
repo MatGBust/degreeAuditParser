@@ -15,3 +15,20 @@
 .course-card:hover {
   transform: scale(1.02);       /* Slightly scale up on hover */
 }
+
+.upload-button {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background-color: #a2aaad;
+  transition: transform 0.3s;
+  width: 800px;
+}
+
+.upload-button:hover{
+  padding: 20px;
+  color: white;
+}
