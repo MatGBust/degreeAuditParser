@@ -10,12 +10,30 @@ const Home = () => {
     // Add more courses as needed
   ];
 
-  // Handle file upload
-  const handleFileUpload = (event) => {
+  const handleFileUpload = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      // Process the file (you can send it to a server or read it locally)
+
+    if (file && file.type === 'application/pdf') {
       console.log('Uploaded file:', file);
+
+      // Example: Send the PDF to a parser
+      const fileReader = new FileReader();
+      fileReader.onload = async (e) => {
+        const arrayBuffer = e.target.result;
+
+        // Example: Parsing with pdf-lib (you can choose another library)
+        // const pdfDoc = await PDFDocument.load(arrayBuffer);
+        // const textContent = await pdfDoc.getTextContent();
+        // console.log('Parsed PDF content:', textContent);
+
+        // Alternatively, send the PDF to the server for further processing
+        // sendPdfToServer(file);
+
+        console.log('PDF successfully processed');
+      };
+      fileReader.readAsArrayBuffer(file);
+    } else {
+      console.error('Please upload a valid PDF file.');
     }
   };
 
