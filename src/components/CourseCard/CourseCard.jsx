@@ -1,15 +1,16 @@
-// src/components/CourseCard.js
 import React from 'react';
-import './CourseCard.css';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 
-const CourseCard = ({ course }) => {
+function CourseCard({ course }) {
   return (
-    <div className={`course-card ${course.completed ? 'completed' : ''}`}>
-      <h3>{course.title}</h3>
-      <p>{course.credits} Credits</p>
-      <p>Status: {course.completed ? 'Completed' : 'In Progress'}</p>
-    </div>
+    <Link to={`/course/${course.title}`} className="course-card-link">
+      <div className="course-card">
+        <h3>{course.title}</h3>
+        <p>Credits: {course.credits}</p>
+        <p>Status: {course.completed ? 'Completed' : 'In Progress'}</p>
+      </div>
+    </Link>
   );
-};
+}
 
 export default CourseCard;
