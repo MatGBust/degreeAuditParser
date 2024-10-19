@@ -9,7 +9,7 @@ const Home = () => {
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
 
-    if (file && file.type === 'application/pdf') {
+    if (file && file.type === 'text/html') {
       console.log('Uploaded file:', file);
 
       const fileReader = new FileReader();
@@ -36,11 +36,11 @@ const Home = () => {
         // Alternatively, send the PDF to the server for further processing
         // sendPdfToServer(file);
 
-        console.log('PDF successfully processed');
+        console.log('HTML successfully processed');
       };
       fileReader.readAsArrayBuffer(file);
     } else {
-      console.error('Please upload a valid PDF file.');
+      console.error('Please upload a valid HTML file.');
     }
   };
 
@@ -50,7 +50,7 @@ const Home = () => {
       <div className="upload-container">
         <label className="upload-button">
           Upload Degree Audit
-          <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept="application/pdf" />
+          <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept=".html" />
         </label>
       </div>
       {categories.length > 0 ? (
