@@ -9,13 +9,16 @@ import {BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 function App() {
   return (
     <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/section1" element={<SectionPage />} />
-      <Route path="/section2" element={<SectionPage />} />
-      <Route path="/section3" element={<SectionPage />} />
-    </Routes>
+    <Header />
+    <div className="main-content">
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Home Page */}
+        <Route path="/degree-audit" element={<DegreeAuditParser />} /> {/* Audit Page */}
+        <Route path="/section/:id" element={<SectionPage />} /> {/* Dynamic section */}
+      </Routes>
+    </div>
   </Router>
+
   );
 }
 
