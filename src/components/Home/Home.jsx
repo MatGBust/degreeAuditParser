@@ -4,14 +4,7 @@ import CourseCard from '../CourseCard/CourseCard';
 import './Home.css';
 
 const Home = () => {
-  const courses = [
-    { id: 1, title: 'BASIC MATH & SCIENCE', credits: 3, completed: true },
-    { id: 2, title: 'GENERAL COLLEGE OF ENGINEERING REQUIREMENTS', credits: 3, completed: true },
-    { id: 3, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1', credits: 3, completed: true },
-    { id: 4, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 2', credits: 4, completed: false },
-    {id: 5, title: 'COMPUTER SCIENCE & ENG - TECH/DIRECT/TARGET ELECTIVES', credits: 3, completed: false}
-    // Add more courses as needed
-  ];
+  
 
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -31,6 +24,16 @@ const Home = () => {
 
         // Alternatively, send the PDF to the server for further processing
         // sendPdfToServer(file);
+
+
+        const courses = [
+          { id: 1, title: 'BASIC MATH & SCIENCE', credits: 3, completed: true },
+          { id: 2, title: 'GENERAL COLLEGE OF ENGINEERING REQUIREMENTS', credits: 3, completed: true },
+          { id: 3, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1', credits: 3, completed: true },
+          { id: 4, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 2', credits: 4, completed: false },
+          {id: 5, title: 'COMPUTER SCIENCE & ENG - TECH/DIRECT/TARGET ELECTIVES', credits: 3, completed: false}
+          // Add more courses as needed
+        ];
 
         console.log('PDF successfully processed');
       };
