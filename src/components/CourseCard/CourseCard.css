@@ -7,7 +7,7 @@
   text-align: center;
   text-decoration: none;
   color: black;
-  background-color: #898181;
+  background-color: #a2aaad;
   transition: transform 0.3s;
   width: 800px;
 }
@@ -17,14 +17,14 @@
 }
 
 .progress-container {
-  background-color: #e0e0e0; /* Background color of the progress bar */
+  background-color: #fffefe; /* Background color of the progress bar */
   border-radius: 8px; /* Rounded corners */
   height: 20px; /* Height of the progress bar */
   margin: 10px 0; /* Margin between elements */
 }
 
 .progress-bar {
-  background-color: #76c7c0; /* Color of the progress */
+  background-color: #0cdc39; /* Color of the progress */
   height: 100%; /* Full height */
   border-radius: 8px; /* Rounded corners */
   transition: width 0.3s; /* Smooth transition for width change */
