@@ -49,7 +49,7 @@ const Home = () => {
       <h1>Hi Buckeye! Upload your degree audit here!</h1>
       <div className="upload-container">
         <label className="upload-button">
-          Upload
+          Upload Degree Audit
           <input type="file" onChange={handleFileUpload} style={{ display: 'none' }} accept="application/pdf" />
         </label>
       </div>
