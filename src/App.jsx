@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home'; // Home component displaying course cards
 import CourseDetails from './components/CourseDetails/CourseDetails'; // Component for displaying course details
@@ -7,19 +7,23 @@ import './App.css'; // Global styles, if any
 import { fetchData } from './util/api';
 
 function App() {
+  const [classData, setClassData] = useState(null);
 
-  const getClassData = () => {
-    fetchData('CSE', '1222')  // Call fetchData, which returns a promise
-      .then((data) => {
-        console.log(data.title);  // Handle the resolved data here
-        return data;  // You can return the value for further use
-      })
-      .catch((error) => {
+  useEffect(() => {
+    const getClassData = async () => {
+      try {
+        const data = await fetchData('CSE', '1222'); // Fetch data using the async function
+        setClassData(data); // Set the returned data in state
+      } catch (error) {
         console.error("Error fetching data:", error);
-      });
-  };
+      }
+    };
 
-  getClassData();
+    getClassData(); // Call the async function
+  }, []); // Empty dependency array to run once
+
+  console.log(classData?.title)
+
 
   return (
     <Router>
