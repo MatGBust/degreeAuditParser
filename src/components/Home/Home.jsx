@@ -1,6 +1,7 @@
 // src/components/Home/Home.jsx
 import React from 'react';
 import CourseCard from '../CourseCard/CourseCard'; // Adjust the path as needed
+import './Home.css'
 
 const Home = () => {
   const courses = [

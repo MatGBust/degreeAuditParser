@@ -7,7 +7,9 @@
   text-align: center;
   text-decoration: none;
   color: black;
+  background-color: #898181;
   transition: transform 0.3s;
+  width: 50pc;
 }
 
 .course-card:hover {
