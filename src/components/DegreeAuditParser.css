@@ -1,0 +1,33 @@
+/* DegreeAuditParser.css */
+
+.degree-audit-parser {
+    padding: 20px; /* Inner padding */
+    background-color: #f9f9f9; /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  .degree-audit-parser h2 {
+    font-size: 24px; /* Size of the header */
+    margin-bottom: 15px; /* Space below the header */
+    color: #333; /* Dark gray color for the header */
+  }
+  
+  .audit-content {
+    margin-top: 10px; /* Space above the content */
+  }
+  
+  .audit-content ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .audit-content li {
+    padding: 10px; /* Inner padding for list items */
+    border-bottom: 1px solid #ddd; /* Bottom border between items */
+    color: #444; /* Darker text color */
+  }
+  
+  .audit-content li:last-child {
+    border-bottom: none; /* Remove border for last item */
+  }

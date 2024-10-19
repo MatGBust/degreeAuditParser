@@ -1,0 +1,32 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4a90e2; /* Header background color */
+    color: white; /* Text color */
+    font-family: Arial, sans-serif; /* Font for the header */
+  }
+  
+  .header h1 {
+    font-size: 24px; /* Size of the header text */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+  }
+  
+  .user-info img {
+    width: 40px; /* Size of the user avatar */
+    height: 40px; /* Size of the user avatar */
+    border-radius: 50%; /* Make the avatar circular */
+    margin-right: 10px; /* Space between avatar and text */
+  }
+  
+  .user-info span {
+    font-size: 16px; /* Size of the user welcome text */
+  }

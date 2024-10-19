@@ -1,0 +1,30 @@
+/* CourseCard.css */
+
+.course-card {
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Inner padding */
+    margin: 10px 0; /* Vertical margin between cards */
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: transform 0.2s; /* Smooth transform effect */
+  }
+  
+  .course-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  .course-card.completed {
+    background-color: #d4edda; /* Light green for completed courses */
+    border-color: #c3e6cb; /* Darker green border */
+  }
+  
+  .course-card h3 {
+    margin: 0; /* Remove default margin */
+    font-size: 20px; /* Size of the course title */
+  }
+  
+  .course-card p {
+    margin: 5px 0; /* Vertical margin for paragraphs */
+    color: #555; /* Dark gray for course details */
+  }

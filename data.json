@@ -1,0 +1,40 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "name": "Introduction to Computer Science",
+        "credits": 3,
+        "status": "Completed"
+      },
+      {
+        "id": 2,
+        "name": "Data Structures",
+        "credits": 4,
+        "status": "In Progress"
+      },
+      {
+        "id": 3,
+        "name": "Algorithms",
+        "credits": 4,
+        "status": "Not Started"
+      },
+      {
+        "id": 4,
+        "name": "Operating Systems",
+        "credits": 3,
+        "status": "Completed"
+      },
+      {
+        "id": 5,
+        "name": "Database Systems",
+        "credits": 3,
+        "status": "In Progress"
+      },
+      {
+        "id": 6,
+        "name": "Web Development",
+        "credits": 3,
+        "status": "Completed"
+      }
+    ]
+  }
