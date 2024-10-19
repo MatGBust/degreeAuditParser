@@ -22,7 +22,7 @@ function App() {
     getClassData(); // Call the async function
   }, []); // Empty dependency array to run once
 
-  console.log(classData.title)
+  console.log(classData?.title)
 
 
   return (
