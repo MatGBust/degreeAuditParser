@@ -1,29 +1,24 @@
-// src/components/Home.jsx
+// src/components/Home/Home.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css'; // Create this CSS file for styling
-import CourseCard from '../CourseCard/CourseCard';
+import CourseCard from '../CourseCard/CourseCard'; // Adjust the path as needed
 
-function Home() {
+const Home = () => {
+  const courses = [
+    { id: 1, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1', credits: 3, completed: true },
+    { id: 2, title: 'COMPUTER SCIENCE & ENG - TECH//DIRECT//TARGETED ELECTIVES SOFTWARE ENGINEERING OPTION', credits: 4, completed: false },
+    // Add more courses as needed
+  ];
+
   return (
     <div>
-      <h1>Welcome to the Degree Audit Parser</h1>
-      <div className="button-container">
-        <Link to="/degree-audit">
-          <button>Degree Audit</button>
-        </Link>
-        <Link to="/section/1">
-          <button>Section 1</button>
-        </Link>
-        <Link to="/section/2">
-          <button>Section 2</button>
-        </Link>
+      <h1>Available Courses</h1>
+      <div className="course-cards-container">
+        {courses.map(course => (
+          <CourseCard key={course.id} course={course} />
+        ))}
       </div>
-
-      {/* CourseCard Section */}
-      <CourseCard course={{ title: 'Introduction to Programming', credits: 3, completed: false }} />
     </div>
   );
-}
+};
 
 export default Home;
