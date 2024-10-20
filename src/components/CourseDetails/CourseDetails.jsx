@@ -1,15 +1,22 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-function CourseDetails() {
-  const { courseTitle } = useParams(); // Get course title from route parameter
+const CourseDetails = () => {
+    const location = useLocation();
+    const { category } = location.state || {};
 
-  return (
-    <div>
-      <h1>Course Details for: {courseTitle}</h1>
-      {/* Add more detailed course information here */}
-    </div>
-  );
-}
+    if (!category) {
+        return <div>No course details available.</div>;
+    }
+
+    return (
+        <div>
+            <h1>Course Details for: {category.title}</h1>
+            <p>Credits: {category.credits}</p>
+            <p>Status: {category.completed ? 'Completed' : 'Not Completed'}</p>
+            {/* Add more detailed course information here */}
+        </div>
+    );
+};
 
 export default CourseDetails;
