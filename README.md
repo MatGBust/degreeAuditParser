@@ -1,8 +1,8 @@
 # Degree Audit Parser
-We were unhappy with Ohio States degree audit format. It lacked specific course details, prerequisits for each course, and had disgusting UI. So, we created "Degree Audit Parser" as a modern and user friendly Degree Audit to help make OSU students lifes easier.
+We were dissatisfied with Ohio State's degree audit format. It lacked specific course details, prerequisites for each course, and had a poor user interface. To address this, we created the 'Degree Audit Parser,' a modern and user-friendly tool designed to make OSU students' lives easier.
 
-How It works
-We requests an .html version of the users degree audit. Then we parse the data into categories and subcategories of courses. This data is then uses Class Search API (classes.osu.edu) to find the course titles, course details, and course prerequisits.
+<div><strong>How It Works</strong></div>
+We request an .html version of the user's degree audit, then parse the data into categories and subcategories of courses. This data is then used with the Class Search API (classes.osu.edu) to retrieve course titles, details, and prerequisites.
 
 
 # Before:
