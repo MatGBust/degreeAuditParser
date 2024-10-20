@@ -11,10 +11,19 @@ const CourseDetails = () => {
 
     return (
         <div>
-            <h1>Course Details for: {category.title}</h1>
-            <p>Credits: {category.credits}</p>
-            <p>Status: {category.completed ? 'Completed' : 'Not Completed'}</p>
-            {/* Add more detailed course information here */}
+            <h2>{category.title}</h2> {/* Category title */}
+            <p>Completed Courses:</p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+                {category.class.completed.map((completedClass, index) => (
+                    <li key={index}>{completedClass}</li> // Display each completed class
+                ))}
+            </ul>
+            <p>Need to Complete Courses:</p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+                {category.class.incompleted.map((incompleteClass, index) => (
+                    <li key={index}>{incompleteClass}</li> // Display each completed class
+                ))}
+            </ul>
         </div>
     );
 };
