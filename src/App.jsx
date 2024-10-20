@@ -15,7 +15,7 @@ function App() {
       <div className="App">
       <Header />
         <Routes>
-          <Route path="/" element={<Home />} /> {/* Homepage with Course Cards */}
+          <Route path="/" element={<Home classData={classData}/>} /> {/* Homepage with Course Cards */}
           {/* <Route path="/course/:courseId" element={<CourseDetails />} /> Course details page */}
           {/* Add more routes as needed */}
 
@@ -25,7 +25,7 @@ function App() {
             element={
               <>
                 <BackButton /> {/* Back button will only show on the CourseDetails page */}
-                <CourseDetails />
+                <CourseDetails classData={classData}/>
               </>
             } 
             
