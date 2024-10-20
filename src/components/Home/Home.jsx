@@ -20,11 +20,20 @@ const Home = () => {
         // For now, let's simulate parsing with dummy data:
         //class: {class: map with two keys complete and incomplete, and the arrays of classes as the values}
         const parsedCategories = [
-          { id: 1, title: 'BASIC MATH & SCIENCE',  },
-          { id: 2, title: 'GENERAL COLLEGE OF ENGINEERING REQUIREMENTS', },
-          { id: 3, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1', },
-          { id: 4, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 2', },
-          { id: 5, title: 'COMPUTER SCIENCE & ENG - TECH/DIRECT/TARGET ELECTIVES', },
+          { id: 1, title: 'BASIC MATH & SCIENCE', classMap: {
+            complete: [
+              'Calculus',
+              'Physics'
+            ],
+            incomplete: [
+              'Chemistry',
+              'Linear'
+            ],
+          }, },
+          { id: 2, title: 'GENERAL COLLEGE OF ENGINEERING REQUIREMENTS'},
+          { id: 3, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 1' },
+          { id: 4, title: 'COMPUTER SCIENCE & ENGINEERING - MAJOR CORE - PART 2' },
+          { id: 5, title: 'COMPUTER SCIENCE & ENG - TECH/DIRECT/TARGET ELECTIVES' },
         ];
 
         // Update the courses state with the parsed courses
