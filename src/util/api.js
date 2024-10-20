@@ -55,7 +55,7 @@ export function parseAuditHTML(htmlString) {
             const courses = courseTable.getElementsByClassName('takenCourse');
 
             // Debugging to see each course row
-            console.log('Courses in table:', courses);
+
 
             Array.from(courses).forEach((courseRow) => {
                 const courseData = {
@@ -78,5 +78,6 @@ export function parseAuditHTML(htmlString) {
         id++;
     });
 
+    console.log(requirements)
     return requirements;
 }

@@ -14,7 +14,7 @@ const Home = () => {
 
         reader.onload = (e) => {
             const fileContent = e.target.result; // Get the file content as a string
-            console.log(fileContent); // Output the file content
+
 
             // Now you can parse the HTML string with DOMParser
             const parsedData = parseAuditHTML(fileContent);
