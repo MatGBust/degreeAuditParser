@@ -32,59 +32,79 @@ export function parseAuditHTML(htmlString) {
   const reqTitles = Array.from(reqTitleElements);
 
   const excludedTitles = [
-      "current/ future term schedule",
-      "computer science engineering required non-major coursework",
-      "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSE AND JUST WORLD THEME AND ONE ADDITIONAL THEME",
-      "TRANSFER CREDIT: COURSE WORK THAT APPEARS HERE WILL NOT APPLY TO ANY DEGREE REQUIREMENTS.",
-      "GENERAL GRADUATION REQUIREMENTS (MINIMUM HOURS: 126)",
-      "general education reflection",
-      "BASIC MATH & SCIENCE - ABET REQUIREMENTS: 30 HR MIN",
-      "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSEAND JUST WORLD THEME AND ONE ADDITIONAL THEME."
+    "current/ future term schedule",
+    "computer science engineering required non-major coursework",
+    "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSE AND JUST WORLD THEME AND ONE ADDITIONAL THEME",
+    "TRANSFER CREDIT: COURSE WORK THAT APPEARS HERE WILL NOT APPLY TO ANY DEGREE REQUIREMENTS.",
+    "GENERAL GRADUATION REQUIREMENTS (MINIMUM HOURS: 126)",
+    "general education reflection",
+    "BASIC MATH & SCIENCE - ABET REQUIREMENTS: 30 HR MIN",
+    "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSEAND JUST WORLD THEME AND ONE ADDITIONAL THEME."
   ];
 
   reqTitles.forEach((reqTitleElement) => {
-      const title = reqTitleElement.textContent.trim();
-      if (excludedTitles.some(excluded => title.toLowerCase() === excluded.toLowerCase())) {
-          return; // Skip excluded titles
-      }
+    const title = reqTitleElement.textContent.trim();
+    if (excludedTitles.some(excluded => title.toLowerCase() === excluded.toLowerCase())) {
+      return; // Skip excluded titles
+    }
 
-      const requirement = {};
-      requirement.id = id++;
-      requirement.title = title;
+    const requirement = {};
+    requirement.id = id++;
+    requirement.title = title;
 
-      const requirementNode = reqTitleElement.closest('.requirement');
-      const completedCoursesElements = requirementNode.getElementsByClassName('completedCourses');
+    const requirementNode = reqTitleElement.closest('.requirement');
+    const completedCoursesElements = requirementNode.getElementsByClassName('completedCourses');
 
-      requirement.class = { completed: [], incompleted: [], inProgress: [] };
+    requirement.class = { completed: [], incompleted: [], inProgress: [] };
 
-      Array.from(completedCoursesElements).forEach((courseTable) => {
-          const courses = courseTable.getElementsByClassName('takenCourse');
-          Array.from(courses).forEach((courseRow) => {
-              const courseData = {
-                  term: courseRow.getElementsByClassName('term')[0]?.textContent.trim() || '',
-                  course: courseRow.getElementsByClassName('course')[0]?.textContent.trim() || '',
-                  credit: parseFloat(courseRow.getElementsByClassName('credit')[0]?.textContent.trim()) || 0,
-                  grade: courseRow.getElementsByClassName('grade')[0]?.textContent.trim() || '',
-                  completed: !courseRow.classList.contains('ip'),
-                  inProgress: courseRow.classList.contains('ip')
-              };
-              if (courseData.inProgress) {
-                  requirement.class.inProgress.push(courseData.course);
-              } else {
-                  requirement.class.completed.push(courseData.course);
-              }
-          });
+    let lastSubject = '';
+
+    Array.from(completedCoursesElements).forEach((courseTable) => {
+      const courses = courseTable.getElementsByClassName('takenCourse');
+      Array.from(courses).forEach((courseRow) => {
+        const courseData = {
+          term: courseRow.getElementsByClassName('term')[0]?.textContent.trim() || '',
+          course: courseRow.getElementsByClassName('course')[0]?.textContent.trim() || '',
+          credit: parseFloat(courseRow.getElementsByClassName('credit')[0]?.textContent.trim()) || 0,
+          grade: courseRow.getElementsByClassName('grade')[0]?.textContent.trim() || '',
+          completed: !courseRow.classList.contains('ip'),
+          inProgress: courseRow.classList.contains('ip')
+        };
+        if (!isNaN(courseData.course) && lastSubject) {
+          courseData.course = `${lastSubject} ${courseData.course}`;
+        } else {
+          const parts = courseData.course.split(/\s+/);
+          lastSubject = parts[0];
+        }
+
+        if (courseData.inProgress) {
+          requirement.class.inProgress.push(courseData.course);
+        } else {
+          requirement.class.completed.push(courseData.course);
+        }
       });
+    });
 
-      const draggableCourses = requirementNode.getElementsByClassName('course draggable');
-      if (draggableCourses.length) {
-          requirement.class.incompleted = Array.from(draggableCourses).map(course => course.textContent.trim());
-      }
+    const draggableCourses = requirementNode.getElementsByClassName('course draggable');
+    if (draggableCourses.length) {
+      requirement.class.incompleted = Array.from(draggableCourses).map(course => {
+        let courseText = course.textContent.trim();
 
-      requirement.isCompleted = requirement.class.incompleted.length === 0 && requirement.class.inProgress.length === 0;
+        if (!isNaN(courseText) && lastSubject) {
+          return `${lastSubject} ${courseText}`;
+        } else {
+          const parts = courseText.split(/\s+/);
+          if (parts.length === 2) {
+            lastSubject = parts[0];
+          }
+          return courseText;
+        }
+      });
+    }
 
-      console.log(requirement);
-      requirements.push(requirement);
+    requirement.isCompleted = requirement.class.incompleted.length === 0 && requirement.class.inProgress.length === 0;
+
+    requirements.push(requirement);
   });
 
   console.log(requirements);
