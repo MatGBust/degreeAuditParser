@@ -12,10 +12,9 @@ const CategoryCard = ({ category }) => {
     return (
         <div className="category-card" onClick={handleCardClick}>
             <h3>{category.title}</h3>
-            <p>{category.credits} credits</p>
-            <p>{category.completed ? 'Completed' : 'Not Completed'}</p>
+            <p>Status: {category.isCompleted ? 'Completed' : 'Incomplete'}</p>
         </div>
     );
 };
 
-export default CategoryCard
+export default CategoryCard;

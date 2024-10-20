@@ -5,14 +5,12 @@ import CourseDetails from './components/CourseDetails/CourseDetails'; // Compone
 import Header from './components/Header/Header'; // Home component displaying course cards
 import './App.css'; // Global styles, if any
 import BackButton from './components/BackButton/BackButton'; 
+import { UploadProvider } from './context/UploadContext';
 import { fetchData } from './util/api';
 
 function App() {
-
- 
-
-
   return (
+    <UploadProvider>
     <Router>
       <div className="App">
       <Header />
@@ -30,12 +28,13 @@ function App() {
                 <CourseDetails />
               </>
             } 
+            
           />
-          
           {/* Add more routes as needed */}
         </Routes>
       </div>
     </Router>
+    </UploadProvider>
   );
 }
 

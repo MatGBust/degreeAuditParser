@@ -23,61 +23,68 @@ export const fetchData = async (subj, classNmbr) => {
 };
 
 export function parseAuditHTML(htmlString) {
-  // Create a DOMParser to parse the HTML string
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, 'text/html');
-
   const requirements = [];
   let id = 0;
 
-  // Select all requirement titles
   const reqTitleElements = doc.getElementsByClassName('reqTitle');
-
-  // Convert HTMLCollection to Array for easier manipulation
   const reqTitles = Array.from(reqTitleElements);
 
+  const excludedTitles = [
+      "current/ future term schedule",
+      "computer science engineering required non-major coursework",
+      "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSE AND JUST WORLD THEME AND ONE ADDITIONAL THEME",
+      "TRANSFER CREDIT: COURSE WORK THAT APPEARS HERE WILL NOT APPLY TO ANY DEGREE REQUIREMENTS.",
+      "GENERAL GRADUATION REQUIREMENTS (MINIMUM HOURS: 126)",
+      "general education reflection"
+  ];
+
   reqTitles.forEach((reqTitleElement) => {
-    requirements[id] = {};
-    requirements[id].id = id;
-    const reqTitle = reqTitleElement.textContent.trim();
-    requirements[id].title = reqTitle;
-    const completedCoursesElements = reqTitleElement.closest('.requirement').getElementsByClassName('completedCourses');
+      const title = reqTitleElement.textContent.trim();
+      if (excludedTitles.some(excluded => title.toLowerCase() === excluded.toLowerCase())) {
+          return; // Skip excluded titles
+      }
 
-    // Initialize the object for this requirement
-    requirements[id].class = {
-      completed: [],
-      incompleted: []
-    };
+      const requirement = {};
+      requirement.id = id++;
+      requirement.title = title;
 
+      const requirementNode = reqTitleElement.closest('.requirement');
+      const completedCoursesElements = requirementNode.getElementsByClassName('completedCourses');
 
-    // Loop through all completed courses for this requirement
-    Array.from(completedCoursesElements).forEach((courseTable) => {
-      const courses = courseTable.getElementsByClassName('takenCourse');
+      requirement.class = { completed: [], incompleted: [], inProgress: [] };
 
-      // Debugging to see each course row
-
-
-      Array.from(courses).forEach((courseRow) => {
-        const courseData = {
-          term: courseRow.getElementsByClassName('term')[0].textContent.trim(),
-          course: courseRow.getElementsByClassName('course')[0].textContent.trim(),
-          credit: parseFloat(courseRow.getElementsByClassName('credit')[0].textContent.trim()),
-          grade: courseRow.getElementsByClassName('grade')[0].textContent.trim(),
-          completed: !courseRow.classList.contains('ip') // Check if the course is in progress
-        };
-        requirements[id].class.completed.push(courseData.course);
+      Array.from(completedCoursesElements).forEach((courseTable) => {
+          const courses = courseTable.getElementsByClassName('takenCourse');
+          Array.from(courses).forEach((courseRow) => {
+              const courseData = {
+                  term: courseRow.getElementsByClassName('term')[0]?.textContent.trim() || '',
+                  course: courseRow.getElementsByClassName('course')[0]?.textContent.trim() || '',
+                  credit: parseFloat(courseRow.getElementsByClassName('credit')[0]?.textContent.trim()) || 0,
+                  grade: courseRow.getElementsByClassName('grade')[0]?.textContent.trim() || '',
+                  completed: !courseRow.classList.contains('ip'),
+                  inProgress: courseRow.classList.contains('ip')
+              };
+              if (courseData.inProgress) {
+                  requirement.class.inProgress.push(courseData.course);
+              } else {
+                  requirement.class.completed.push(courseData.course);
+              }
+          });
       });
-    });
 
-    // Add any draggable courses under the requirement title
-    const draggableCourses = reqTitleElement.closest('.requirement').getElementsByClassName('course draggable');
-    if (draggableCourses.length) {
-      requirements[id].class.incompleted = Array.from(draggableCourses).map(course => { return course.textContent.trim(); });
-    }
+      const draggableCourses = requirementNode.getElementsByClassName('course draggable');
+      if (draggableCourses.length) {
+          requirement.class.incompleted = Array.from(draggableCourses).map(course => course.textContent.trim());
+      }
 
-    id++;
+      requirement.isCompleted = requirement.class.incompleted.length === 0 && requirement.class.inProgress.length === 0;
+
+      console.log(requirement);
+      requirements.push(requirement);
   });
 
-  console.log(requirements)
+  console.log(requirements);
   return requirements;
 }
