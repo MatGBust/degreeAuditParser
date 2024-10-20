@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kamathN593.github.io/degreeAuditParser",
+  "homepage": "https://NaveenMachine.github.io/degreeAuditParser",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
