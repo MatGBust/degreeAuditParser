@@ -55,20 +55,19 @@ const CourseDetails = () => {
     if (error) return <div>Error: {error}</div>;
 
 
-    console.log(classDataMap)
     return (
         <div>
             <h2>{category.title}</h2> {/* Category title */}
             <p>Completed Courses:</p>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {category.class.completed.map((completedClass, index) => (
-                    <li key={index}>{completedClass}</li> // Display each completed class
+                    <li key={index}>{classDataMap[completedClass].title}</li> // Display each completed class
                 ))}
             </ul>
             <p>Need to Complete Courses:</p>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {category.class.incompleted.map((incompleteClass, index) => (
-                    <li key={index}>{incompleteClass}</li> // Display each completed class
+                    <li key={index}>{classDataMap[incompleteClass].title}</li> // Display each completed class
                 ))}
             </ul>
         </div>
