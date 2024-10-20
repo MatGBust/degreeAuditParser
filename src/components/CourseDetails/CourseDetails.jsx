@@ -74,18 +74,20 @@ const CourseDetails = () => {
                                 <th className="credits-column">Credits</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {category.class.incompleted.map((incompleteClass, index) => (
+                            <tbody>
+                                {category.class.incompleted.map((incompleteClass, index) => (
                                 <tr key={index} onClick={() => handleClassClick(incompleteClass)} style={{ cursor: 'pointer' }}>
-                                    <td className="course-name-column">{classDataMap[incompleteClass]?.title || incompleteClass}</td>
+                                    <td className="course-name-column">
+                                        {`${classDataMap[incompleteClass]?.subject} ${classDataMap[incompleteClass]?.classNumber}: ${classDataMap[incompleteClass]?.title}` || incompleteClass}
+                                    </td>
                                     <td className="credits-column">{classDataMap[incompleteClass]?.units || 'N/A'}</td>
                                 </tr>
-                            ))}
-                            <tr>
-                                <td className="course-name-column"><strong>Total Credits</strong></td>
-                                <td className="credits-column"><strong>{incompleteCredits}</strong></td>
-                            </tr>
-                        </tbody>
+                                ))}
+                                <tr>
+                                    <td className="course-name-column"><strong>Total Credits</strong></td>
+                                    <td className="credits-column"><strong>{incompleteCredits}</strong></td>
+                                    </tr>
+                            </tbody>
                     </table>
                 </div>
                 <div className="completed-courses">
@@ -98,17 +100,19 @@ const CourseDetails = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {category.class.completed.map((completedClass, index) => (
-                                <tr key={index} onClick={() => handleClassClick(completedClass)} style={{ cursor: 'pointer' }}>
-                                    <td className="course-name-column">{classDataMap[completedClass]?.title || completedClass}</td>
-                                    <td className="credits-column">{classDataMap[completedClass]?.units || 'N/A'}</td>
+                                {category.class.completed.map((completeClass, index) => (
+                                <tr key={index} onClick={() => handleClassClick(completeClass)} style={{ cursor: 'pointer' }}>
+                                    <td className="course-name-column">
+                                        {`${classDataMap[completeClass]?.subject} ${classDataMap[completeClass]?.classNumber}: ${classDataMap[completeClass]?.title}` || completeClass}
+                                    </td>
+                                    <td className="credits-column">{classDataMap[completeClass]?.units || 'N/A'}</td>
                                 </tr>
-                            ))}
-                            <tr>
-                                <td className="course-name-column"><strong>Total Credits</strong></td>
-                                <td className="credits-column"><strong>{completedCredits}</strong></td>
-                            </tr>
-                        </tbody>
+                                ))}
+                                <tr>
+                                    <td className="course-name-column"><strong>Total Credits</strong></td>
+                                    <td className="credits-column"><strong>{completedCredits}</strong></td>
+                                    </tr>
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -118,7 +122,7 @@ const CourseDetails = () => {
                         <h3>{selectedCourse.title}</h3>
                         <p>
                             <span className="extra-space">Credit Hours: {selectedCourse.units}</span>
-                            <span>Course Code: {selectedCourse.classNumber}</span>
+                            <span>Course ID: {selectedCourse.courseID}</span>
                         </p>
                         <p>{selectedCourse.description}</p>
                     </div>
