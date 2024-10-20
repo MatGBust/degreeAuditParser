@@ -8,22 +8,8 @@ import BackButton from './components/BackButton/BackButton';
 import { fetchData } from './util/api';
 
 function App() {
-  const [classData, setClassData] = useState(null);
 
-  useEffect(() => {
-    const getClassData = async () => {
-      try {
-        const data = await fetchData('CSE', '1222'); // Fetch data using the async function
-        setClassData(data); // Set the returned data in state
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    getClassData(); // Call the async function
-  }, []); // Empty dependency array to run once
-
-  console.log(classData?.title)
+ 
 
 
   return (
