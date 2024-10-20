@@ -30,12 +30,33 @@ const CourseDetails = () => {
                 const classMap = {};
                 for (const className of category.class.completed) {
                     const [subject, classNumber] = className.split(/\s+/);
-                    const classData = await fetchData(subject, classNumber);
+                    let classData = await fetchData(subject, classNumber);
+                    if (classData.classNumber !== classNumber) {
+                        classData = {
+                            classNumber: classNumber, 
+                            subject: subject,         
+                            title: 'Error Loading Title',
+                            units: 0,
+                            description: 'Error Loading Description',
+                            courseID: '000',
+                        };
+                    }
+                    
                     classMap[className] = { ...classData, status: 'completed' };
                 }
                 for (const className of category.class.incompleted) {
                     const [subject, classNumber] = className.split(/\s+/);
-                    const classData = await fetchData(subject, classNumber);
+                    let classData = await fetchData(subject, classNumber);
+                    if (classData.classNumber !== classNumber) {
+                        classData = {
+                            classNumber: classNumber, 
+                            subject: subject,         
+                            title: 'Error Loading Title',
+                            units: 0,
+                            description: 'Error Loading Description',
+                            courseID: '000',
+                        };
+                    }
                     classMap[className] = { ...classData, status: 'incompleted' };
                 }
                 setClassDataMap(classMap);
