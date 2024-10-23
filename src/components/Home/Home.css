@@ -1,34 +1,41 @@
-/* src/components/Home/Home.css */
-
-.category-cards-container {
-  display: flex;                /* Use flexbox layout */
-  flex-direction: column;       /* Stack cards vertically */
-  align-items: center;          /* Center cards horizontally */
-  gap: 16px;                   /* Space between cards */
-  padding: 16px;               /* Padding around the container */
-  min-height: 100vh;           /* Minimum height to fill the viewport */
-  width: 100%;                  /* Full width */
-  overflow: auto;               /* Allow scrolling if content overflows */
-}
-
-
-.category-card:hover {
-  transform: scale(1.02);       /* Slightly scale up on hover */
+.upload-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
 }
 
 .upload-button {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  background-color: #a2aaad;
-  transition: transform 0.3s;
-  width: 800px;
+  display: inline-block; /* Allow the button to size properly */
+  margin-bottom: 5px; /* Space between button and image */
+  padding: 10px; /* Add padding for spacing */
+  background-color: #f0f0f0; /* Light gray background */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor to pointer for interactivity */
+  transition: background-color 0.3s; /* Transition for hover effect */
+  text-align: center; /* Center text within the button */
 }
 
-.upload-button:hover{
-  padding: 20px;
-  color: white;
+.upload-button:hover {
+  background-color: #e0e0e0; /* Darker gray on hover */
+}
+
+.upload-container img {
+  width: 450px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 5px; /* Adjust this value to move the image further below */
+  margin-left: 500px; /* Adjust this value to move the image further below */
+
+}
+.category-cards-container {
+  display: flex;                   /* Enable Flexbox */
+  flex-direction: column;          /* Stack items vertically (if you want to stack headers with cards) */
+  align-items: center;             /* Center items horizontally */
+}
+
+.category-list {
+  display: flex;                   /* Enable Flexbox for category cards */
+  flex-wrap: wrap;                /* Allow cards to wrap to the next line if necessary */
+  justify-content: center;         /* Center the cards horizontally */
+  gap: 20px;                       /* Space between cards (adjust as needed) */
 }

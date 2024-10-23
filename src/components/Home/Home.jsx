@@ -1,13 +1,14 @@
-// Home.js
 import React, { useState, useContext, useEffect } from 'react';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import './Home.css';
 import { parseAuditHTML } from '../../util/api';
 import { UploadContext } from '../../context/UploadContext';
+import pirate from './pirate.png';
 
 const Home = () => {
   const { uploadedData, setUploadedData } = useContext(UploadContext);
   const [categories, setCategories] = useState([]);
+  const [isImageVisible, setIsImageVisible] = useState(true); // State for image visibility
 
   useEffect(() => {
       if (uploadedData) {
@@ -25,6 +26,7 @@ const Home = () => {
               const parsedData = parseAuditHTML(fileContent);
               setCategories(parsedData);
               setUploadedData(fileContent);
+              setIsImageVisible(false); // Hide the image after upload
           };
           reader.onerror = (e) => {
               console.error("Error reading file:", e);
@@ -38,12 +40,13 @@ const Home = () => {
 
   return (
       <div className="category-cards-container">
-          <h1>Hi Buckeye! Upload your degree audit here!</h1>
+          <h1>Ahoy Buckeye! Upload ye degree audit at the input box here!</h1>
           <div className="upload-container">
               <label className="upload-button">
                   Upload Degree Audit
                   <input type="file" onChange={handleFileChange} style={{ display: 'none' }} accept=".html" />
               </label>
+              {isImageVisible && <img src={pirate} alt="OSU Logo" />} {/* Conditionally render the image */}
           </div>
           {categories.length > 0 ? (
               <>
@@ -67,4 +70,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default Home;

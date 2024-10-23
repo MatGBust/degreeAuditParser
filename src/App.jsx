@@ -6,6 +6,7 @@ import Header from './components/Header/Header'; // Home component displaying co
 import './App.css'; // Global styles, if any
 import BackButton from './components/BackButton/BackButton'; 
 import { UploadProvider } from './context/UploadContext';
+import IntroScreen from './components/IntroScreen/IntroScreen'; // Import your SplashScreen component
 import { fetchData } from './util/api';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <div className="App">
       <Header />
         <Routes>
-          <Route path="/" element={<Home/>} /> {/* Homepage with Course Cards */}
+        <Route path="/" element={<IntroScreen/>} /> {/* Homepage with Course Cards */}
+          <Route path="/home" element={<Home/>} /> {/* Homepage with Course Cards */}
           {/* <Route path="/course/:courseId" element={<CourseDetails />} /> Course details page */}
           {/* Add more routes as needed */}
 
