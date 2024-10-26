@@ -32,3 +32,17 @@
   padding: 20px;
   color: white;
 }
+
+.brutus-image {
+  position: absolute;
+  left: 250px; /* Adjust this value to position it left */
+  top: 100px; /* Adjust this value to position it below */
+  transition: opacity 0.3s ease; /* Smooth transition for disappearing */
+  opacity: 1; /* Initially visible */
+  width: 250px;
+}
+
+.hidden {
+  opacity: 0; /* Make image invisible */
+  pointer-events: none; /* Prevent clicks on the image */
+}

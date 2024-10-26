@@ -1,18 +1,20 @@
-// Home.js
 import React, { useState, useContext, useEffect } from 'react';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import './Home.css';
 import { parseAuditHTML } from '../../util/api';
 import { UploadContext } from '../../context/UploadContext';
+import brutus from './brutusDegreeAudit.png';
 
 const Home = () => {
   const { uploadedData, setUploadedData } = useContext(UploadContext);
   const [categories, setCategories] = useState([]);
+  const [isBrutusVisible, setIsBrutusVisible] = useState(true);
 
   useEffect(() => {
       if (uploadedData) {
           const parsedData = parseAuditHTML(uploadedData);
           setCategories(parsedData);
+          setIsBrutusVisible(parsedData.length === 0); // Check visibility after categories are set
       }
   }, [uploadedData]);
 
@@ -25,6 +27,7 @@ const Home = () => {
               const parsedData = parseAuditHTML(fileContent);
               setCategories(parsedData);
               setUploadedData(fileContent);
+              setIsBrutusVisible(parsedData.length === 0); // Hide if categories are present
           };
           reader.onerror = (e) => {
               console.error("Error reading file:", e);
@@ -42,9 +45,14 @@ const Home = () => {
           <div className="upload-container">
               <label className="upload-button">
                   Upload Degree Audit
-                  <input type="file" onChange={handleFileChange} style={{ display: 'none' }} accept=".html" />
+                  <input type="file" id="upload" onChange={handleFileChange} style={{ display: 'none' }} accept=".html" />
               </label>
           </div>
+          {isBrutusVisible && (
+              <div className="brutus-image">
+                  <img id="brutus" src={brutus} alt="Brutus" className="brutus-image" />
+              </div>
+          )}
           {categories.length > 0 ? (
               <>
                   <h2>Incomplete Categories</h2>
@@ -67,4 +75,4 @@ const Home = () => {
   );
 };
 
-export default Home
+export default Home;

@@ -35,7 +35,7 @@ const CourseDetails = () => {
                         classData = {
                             classNumber: classNumber, 
                             subject: subject,         
-                            title: 'Error Loading Title',
+                            title: 'Course not found in OSU Course Search, consult advisor regarding course',
                             units: 0,
                             description: 'Error Loading Description',
                             courseID: '000',
@@ -51,7 +51,7 @@ const CourseDetails = () => {
                         classData = {
                             classNumber: classNumber, 
                             subject: subject,         
-                            title: 'Error Loading Title',
+                            title: 'Course not found in OSU Course Search, consult advisor regarding course',
                             units: 0,
                             description: 'Error Loading Description',
                             courseID: '000',
@@ -76,7 +76,7 @@ const CourseDetails = () => {
         }, 0);
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Fetching course data from OSU course search...</div>;
     if (error) return <div>Error: {error}</div>;
 
     const completedCredits = calculateTotalCredits(category.class.completed);
