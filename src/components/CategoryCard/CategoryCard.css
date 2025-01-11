@@ -13,9 +13,21 @@
 
 .category-card:hover {
   transform: scale(1.05);
-  color: white;
+  color: black;
 }
+.card-header { 
+  padding: 10px; 
+  background-color: #a2aaad; 
+} 
 
+.card-content { 
+  padding: 10px; 
+  background-color: #a2aaad; 
+  display: none; } 
+
+.category-card .card-content { 
+    display: block; 
+  }
 .progress-container {
   background-color: #fffefe; /* Background color of the progress bar */
   border-radius: 8px; /* Rounded corners */

@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryCard.css'; // Assuming you have styles
+import CourseDetails from '../CourseDetails/CourseDetails';
+
 
 const CategoryCard = ({ category }) => {
-    const navigate = useNavigate();
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleCardClick = () => {
-        navigate(`/course/${category.id}`, { state: { category } });
+        setIsOpen(!isOpen);
     };
 
+
     return (
-        <div className="category-card" onClick={handleCardClick}>
-            <h3>{category.title}</h3>
-            <p>Status: {category.isCompleted ? 'Completed' : 'Incomplete'}</p>
+        <div className="category-card">
+            <div className="card-header" onClick={handleCardClick}>
+                <h3>{category.title}</h3>
+            </div>
+            {isOpen && (
+                <div className="card-content">
+                <p>Status : {category.isCompleted ? 'Completed' : 'Incomplete'}</p>
+                <CourseDetails category={category} />
+                </div>
+            )}
         </div>
     );
 };

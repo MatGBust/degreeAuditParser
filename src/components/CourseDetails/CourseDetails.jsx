@@ -1,20 +1,26 @@
 // CourseDetails.js
 import React, { useEffect, useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 import { fetchData } from '../../util/api';
 import Popup from '../Popup/Popup';
 import { UploadContext } from '../../context/UploadContext';
 import './CourseDetails.css';
 
-const CourseDetails = () => {
-    const location = useLocation();
+const CourseDetails = ({category}) => {
+    /*const location = useLocation();
     const { category } = location.state || {};
     const { uploadedData } = useContext(UploadContext);
     const [classDataMap, setClassDataMap] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedCourse, setSelectedCourse] = useState(null);
-
+    */
+    const { uploadedData } = useContext(UploadContext); 
+    const [classDataMap, setClassDataMap] = useState({}); 
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
+    const [selectedCourse, setSelectedCourse] = useState(null);
+    
     const handleClassClick = (courseName) => {
         setSelectedCourse(classDataMap[courseName]);
     };

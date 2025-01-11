@@ -40,15 +40,14 @@ export function parseAuditHTML(htmlString) {
   const doc = parser.parseFromString(htmlString, 'text/html');
   const requirements = [];
   let id = 0;
-
+  /*Array.from(doc.getElementsByClassName('reqTitle')).forEach((reqTitleElement) => {
+    const title = reqTitleElement.textContent.trim();
+    requirements.push(title);
+  }
+  );*/
+  
   const excludedTitles = [
-    "current/ future term schedule",
-    "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSE AND JUST WORLD THEME AND ONE ADDITIONAL THEME",
-    "TRANSFER CREDIT: COURSE WORK THAT APPEARS HERE WILL NOT APPLY TO ANY DEGREE REQUIREMENTS.",
-    "GENERAL GRADUATION REQUIREMENTS (MINIMUM HOURS: 126)",
-    "general education reflection",
-    "BASIC MATH & SCIENCE - ABET REQUIREMENTS: 30 HR MIN",
-    "THEMATIC PATHWAYS - COMPLETE THE CITIZENSHIP FOR A DIVERSEAND JUST WORLD THEME AND ONE ADDITIONAL THEME."
+    
   ];
 
   Array.from(doc.getElementsByClassName('reqTitle')).forEach((reqTitleElement) => {
@@ -129,6 +128,6 @@ export function parseAuditHTML(htmlString) {
 
     requirements.push(requirement);
   });
-
+  
   return requirements;
 }
