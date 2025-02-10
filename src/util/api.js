@@ -40,12 +40,29 @@ export function parseAuditHTML(htmlString) {
   const doc = parser.parseFromString(htmlString, 'text/html');
   const requirements = [];
   let id = 0;
+
+  Array.from(doc.querySelectorAll('[class*="requirement Status_NO"]')).forEach((requirementElement) => {
+    const title = requirementElement.textContent.trim();
+    //const title = requirementElement.querySelector('.reqTitle');
+    //const reqTestBody = requirementElement.querySelector('.reqBody');
+    //const title = reqTitleElement.textContent.trim();
+    const requirement = {
+      title
+    };
+    requirements.push(requirement);
+  }
+  );
+
   /*Array.from(doc.getElementsByClassName('reqTitle')).forEach((reqTitleElement) => {
     const title = reqTitleElement.textContent.trim();
-    requirements.push(title);
+    const requirement = {
+      title
+    };
+    requirements.push(requirement);
   }
   );*/
-  
+
+  /*
   const excludedTitles = [
     
   ];
@@ -128,6 +145,6 @@ export function parseAuditHTML(htmlString) {
 
     requirements.push(requirement);
   });
-  
+  */
   return requirements;
 }
